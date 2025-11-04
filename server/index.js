@@ -14,32 +14,8 @@ const pdfParse = require("pdf-parse");
 const fs = require("fs");
 
 const upload = multer({ dest: "uploads/" });
-// ----- Firebase Admin -----
-/**
- * .env must contain:
- * FIREBASE_SERVICE_ACCOUNT_JSON=./serviceAccountKey.json
- * and the JSON file should be present at that path.
- * 
- * 
- *
- */
 
-async function auth(req, res, next) {
-  const authHeader = req.headers.authorization;
-  if (!authHeader?.startsWith("Bearer ")) {
-    return res.status(401).send("Unauthorized");
-  }
 
-  const token = authHeader.split("Bearer ")[1];
-
-  try {
-    const decoded = await admin.auth().verifyIdToken(token);
-    req.userId = decoded.uid;
-    next();
-  } catch (err) {
-    return res.status(403).send("Invalid token");
-  }
-}
 
 const serviceAccount = require(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
 admin.initializeApp({
