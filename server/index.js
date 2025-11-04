@@ -40,12 +40,16 @@ app.use(
   })
 );
 
-app.options("/", cors());        // for root
-app.options("/session/:id", cors());
-app.options("/sessions", cors());
+// ---- Allow CORS preflight for required routes ----
+app.options("/", cors());
 app.options("/chat", cors());
 app.options("/chat-history", cors());
-api.options("/session/:id/upload", cors());
+app.options("/sessions", cors());
+app.options("/session", cors());
+app.options("/session/:id", cors());
+app.options("/session/:id/message", cors());
+app.options("/session/:id/upload", cors());
+
 
 
 
