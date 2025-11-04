@@ -47,7 +47,28 @@ admin.initializeApp({
 });
 
 const app = express();
-app.use(cors());
+
+import cors from "cors";
+
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "https://aichatbot-yu0u.onrender.com", // backend itself (optional)
+  "https://ai-chat-bot-two-rouge.vercel.app" // ✅ your vercel frontend domain
+];
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
+  })
+);
+
+app.options("*", cors());
+
+
+
 app.use(express.json());
 
 // ----- Auth Middleware -----
