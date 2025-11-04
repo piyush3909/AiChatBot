@@ -24,7 +24,8 @@ function App() {
 
   const fetchSessions = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("http://localhost:5000/sessions", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL
+      }/session`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -33,7 +34,8 @@ function App() {
 
   const newChat = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("http://localhost:5000/session", {
+    const res = await fetch(`${import.meta.env.VITE_API_URL
+}/session`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
     });

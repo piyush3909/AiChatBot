@@ -12,7 +12,6 @@ const Chat = require("./model/chatSchema");
 const multer = require("multer");
 const pdfParse = require("pdf-parse");
 const fs = require("fs");
-const Chat = require("./model/chatSchema");
 
 const upload = multer({ dest: "uploads/" });
 // ----- Firebase Admin -----

@@ -28,7 +28,8 @@ export default function ChatInterface({ sessionId, refreshList }) {
   const loadMessages = async () => {
     try {
       const token = await auth.currentUser.getIdToken();
-      const res = await fetch(`http://localhost:5000/session/${sessionId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL
+      }/session/${sessionId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -52,7 +53,8 @@ export default function ChatInterface({ sessionId, refreshList }) {
       const token = await auth.currentUser.getIdToken();
 
       const res = await fetch(
-        `http://localhost:5000/session/${sessionId}/message`,
+        `${import.meta.env.VITE_API_URL
+          }/session/${sessionId}/message`,
         {
           method: "POST",
           headers: {
@@ -94,7 +96,8 @@ export default function ChatInterface({ sessionId, refreshList }) {
     try {
       const token = await auth.currentUser.getIdToken();
 
-      await fetch(`http://localhost:5000/session/${sessionId}/upload`, {
+      await fetch(`${import.meta.env.VITE_API_URL
+        }/session/${sessionId}/upload`, {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
         body: form
