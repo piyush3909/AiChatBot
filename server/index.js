@@ -40,7 +40,12 @@ app.use(
   })
 );
 
-app.options("*", cors());
+app.options("/", cors());        // for root
+app.options("/session/:id", cors());
+app.options("/sessions", cors());
+app.options("/chat", cors());
+app.options("/chat-history", cors());
+api.options("/session/:id/upload", cors());
 
 
 
